@@ -11,35 +11,33 @@ class App extends React.Component {
     if(e.target.value === '') this.setState({card:'',result:''})
     let userInput = e.target.value.split(' ').join('')
     if(isNaN(userInput)) return
-    const firstChar = userInput[0]
     
+    const firstChar = userInput[0]
     let counter = 0;
-    let formatStr = ''
+    let formattedStr = ''
     if(firstChar === '4' || firstChar === '5'){
       userInput = userInput.slice(0,16)
       for(let i=0;i<userInput.length;i++){
-        formatStr += userInput[i]
+        formattedStr += userInput[i]
         counter += 1
         if(counter % 4 === 0 && i !== userInput.length-1){
-          formatStr += ' '
+          formattedStr += ' '
         }
       }
-
       const card = firstChar === '4' ? 'Visa' : 'Master'
-      this.setState({card,result:formatStr})
+      this.setState({card,result:formattedStr})
     } 
     else if(firstChar === '3' || (firstChar !== '4' && firstChar !=='5')){
       userInput = userInput.slice(0,15)
       for(let i = 0;i<userInput.length;i++){
-          formatStr += userInput[i]
+          formattedStr += userInput[i]
           counter += 1
           
-          if(counter === 4 && i!==userInput.length-1) formatStr += ' '
-          else if(counter === 10 && i!==userInput.length-1) formatStr += ' '
-
+          if(counter === 4 && i!==userInput.length-1) formattedStr += ' '
+          else if(counter === 10 && i!==userInput.length-1) formattedStr += ' '
       }
       const card = userInput[1] === '7' ? 'Amex' : ''
-      this.setState({card,result:formatStr})
+      this.setState({card,result:formattedStr})
     }
     
   }
